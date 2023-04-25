@@ -1,13 +1,25 @@
-import express from 'express';
+import 'reflect-metadata';
+import { createServer } from 'http';
+import {
+  createExpressServer,
+  RoutingControllersOptions,
+} from 'routing-controllers';
 import { config } from './config/config';
-const app = express();
+import { logger } from './logging/logger';
+
+const routingControllerOptions: RoutingControllersOptions = {
+  routePrefix: 'api/v1',
+  controllers: [`${__dirname}/modules/**/controllers/*.controller.*`],
+  validation: true,
+  classTransformer: true,
+  defaultErrorHandler: true,
+};
+
+const app = createExpressServer(routingControllerOptions);
+const httpServer = createServer(app);
 
 const port = config.PORT;
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-
 app.listen(port, () => {
-  return console.log(`Express is listening at http://localhost:${port}`);
+  logger.info(`App running on port ${port}`);
 });
