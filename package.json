@@ -11,7 +11,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prettier-format": "prettier --config .prettierrc.json './src/**/*.ts' --write",
     "precommit": "pretty-quick --staged",
-    "prepare": "husky install .husky",
     "configure-husky": "npx husky install && npx husky add .husky/pre-commit \"npx --no-install lint-staged\""
   },
   "keywords": [],
