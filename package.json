@@ -38,6 +38,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "http": "^0.0.1-security",
+    "joi-to-typescript": "^4.4.1-beta.1",
     "multer": "^1.4.5-lts.1",
     "pg": "^8.10.0",
     "reflect-metadata": "^0.1.13",
