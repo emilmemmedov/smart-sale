@@ -8,8 +8,8 @@ import { config } from './config/config';
 import { logger } from './logging/logger';
 
 const routingControllerOptions: RoutingControllersOptions = {
-  routePrefix: 'api/v1',
-  controllers: [`${__dirname}/modules/**/controllers/*.controller.*`],
+  routePrefix: '/api/v1',
+  controllers: [`${__dirname}/modules/**/controller/*.controller.*`],
   validation: true,
   classTransformer: true,
   defaultErrorHandler: true,
@@ -20,6 +20,6 @@ const httpServer = createServer(app);
 
 const port = config.PORT;
 
-app.listen(port, () => {
+httpServer.listen(port, () => {
   logger.info(`App running on port ${port}`);
 });

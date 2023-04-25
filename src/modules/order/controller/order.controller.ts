@@ -1,7 +1,7 @@
 import { Controller, Get, JsonController } from 'routing-controllers';
 
 @JsonController('/order')
-class OrderController {
+export class OrderController {
   @Get()
   findAllOrder() {
     return {
@@ -10,4 +10,3 @@ class OrderController {
     };
   }
 }
-export default OrderController;
