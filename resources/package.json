@@ -1,0 +1,80 @@
+{
+  "info": {
+    "_postman_id": "bff9fb5c-c87e-4105-a5cb-8b03b1d39a0f",
+    "name": "smart-sale",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "19745820"
+  },
+  "item": [
+    {
+      "name": "Product",
+      "item": [
+        {
+          "name": "add Product",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Doner\",\n    \"description\": \"Doner description\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/product",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "product"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Order",
+      "item": [
+        {
+          "name": "create Order",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"productIds\": [\"84c14d02-e428-4c45-9dc8-e3e3fd285be4\"]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/v1/order",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "v1",
+                "order"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

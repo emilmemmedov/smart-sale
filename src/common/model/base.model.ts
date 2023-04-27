@@ -1,6 +1,7 @@
 import {
   Column,
   CreatedAt,
+  DataType,
   Model,
   PrimaryKey,
   UpdatedAt,
@@ -10,7 +11,10 @@ import { IsUUID } from 'class-validator';
 export class BaseModel extends Model {
   @IsUUID(4)
   @PrimaryKey
-  @Column
+  @Column({
+    type: DataType.UUID,
+    defaultValue: DataType.UUIDV4,
+  })
   id: string;
 
   @CreatedAt

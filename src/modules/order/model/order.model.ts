@@ -1,8 +1,12 @@
-import { Column, Table } from 'sequelize-typescript';
+import { Column, HasMany, HasOne, Table } from 'sequelize-typescript';
 import { BaseModel } from '../../../common/model/base.model';
+import OrderProduct from './order-products.model';
 
 @Table
-export default class User extends BaseModel {
+export default class Order extends BaseModel {
   @Column
-  name: string;
+  totalPrice: number;
+
+  @HasMany(() => OrderProduct)
+  products: OrderProduct[];
 }
