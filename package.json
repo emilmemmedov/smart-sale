@@ -9,7 +9,6 @@
     "dev": "npx ts-node ./src/server.ts",
     "dev:watch": "ts-node-dev --respawn --transpile-only ./src/server.ts",
     "start:test": "NODE_ENV=test node build/src/server.js",
-    "test": "NODE_ENV=test jest --coverage",
     "prettier-format": "prettier --config .prettierrc.json './src/**/*.ts' --write",
     "precommit": "pretty-quick --staged",
     "configure-husky": "npx husky install && npx husky add .husky/pre-commit \"npx --no-install lint-staged\""
