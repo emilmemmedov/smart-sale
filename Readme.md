@@ -8,6 +8,10 @@
 
 ---
 
+### Usage
+
+- import `./resources/postman/smart-sale.postman_collection.json` into postman and test it
+
 ## Features
 
 - Simple CRUD API for order product integrations
@@ -19,4 +23,4 @@
 
 ## Note:
 
-This purpose of project is to demonstrate all requirements of test task. It s not very advanced.
+This purpose of project is to demonstrate all requirements of test task. It s not very advanced. I just tried implement all features which is mentioned in task description.
