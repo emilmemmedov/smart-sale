@@ -1,4 +1,5 @@
 import { Application } from 'express';
+import * as express from 'express';
 import { createServer, Server } from 'http';
 import {
   createExpressServer,
@@ -10,7 +11,11 @@ import { sequelize } from './sequelize';
 import { logger } from './logging/logger';
 
 export default class App {
-  public async init() {
+  public express: Application;
+
+  public httpServer: Server;
+
+  public async init(): Promise<void> {
     const routingControllerOptions: RoutingControllersOptions = {
       routePrefix: '/api/v1',
       controllers: [`${__dirname}/modules/**/controller/*.controller.*`],
@@ -19,26 +24,9 @@ export default class App {
       defaultErrorHandler: false,
     };
 
-    const app = createExpressServer(routingControllerOptions);
-    app.use(errorHandler);
+    this.express = createExpressServer(routingControllerOptions);
+    this.express.use(errorHandler);
 
-    const httpServer = createServer(app);
-
-    const port = config.PORT;
-
-    sequelize
-      .sync()
-      .then(() => {
-        logger.info('Connected to Database');
-      })
-      .catch((err) => {
-        logger.error(err);
-      });
-
-    httpServer.listen(port, () => {
-      logger.info(`App running on port ${port}`);
-    });
-
-    return app;
+    this.httpServer = createServer(this.express);
   }
 }
