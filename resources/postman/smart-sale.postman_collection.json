@@ -16,7 +16,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"name\": \"Doner\",\n    \"description\": \"Doner description\"\n}",
+              "raw": "{\n    \"name\": \"Doner\",\n    \"description\": \"Doner description\",\n    \"price\": 323\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -26,15 +26,24 @@
             "url": {
               "raw": "http://localhost:3000/api/v1/product",
               "protocol": "http",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "3000",
-              "path": [
-                "api",
-                "v1",
-                "product"
-              ]
+              "path": ["api", "v1", "product"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/product",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "v1", "product"]
             }
           },
           "response": []
@@ -51,7 +60,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"productIds\": [\"84c14d02-e428-4c45-9dc8-e3e3fd285be4\"]\n}",
+              "raw": "{\n    \"productIds\": [\"6bdca4f9-712a-4f09-9a13-66a2a224e030\"]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -61,15 +70,24 @@
             "url": {
               "raw": "http://localhost:3000/api/v1/order",
               "protocol": "http",
-              "host": [
-                "localhost"
-              ],
+              "host": ["localhost"],
               "port": "3000",
-              "path": [
-                "api",
-                "v1",
-                "order"
-              ]
+              "path": ["api", "v1", "order"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get Orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/v1/order",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "v1", "order"]
             }
           },
           "response": []
