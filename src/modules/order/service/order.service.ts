@@ -5,6 +5,7 @@ import { Op } from 'sequelize';
 import OrderProduct from '../model/order-products.model';
 import Order from '../model/order.model';
 import ApiError from '../../../exception/ApiError';
+import { orderModeToOrderDtoMapper } from '../mapper/order-mode-to-order-dto-mapper';
 
 @Service()
 export default class OrderService {
@@ -39,5 +40,24 @@ export default class OrderService {
     });
 
     return response;
+  }
+
+  async getOrders() {
+    const orders = await Order.findAll({
+      include: [
+        {
+          model: OrderProduct,
+          include: [
+            {
+              model: Product,
+            },
+          ],
+        },
+      ],
+    });
+
+    return orders.map((order) => {
+      return orderModeToOrderDtoMapper(order);
+    });
   }
 }

@@ -15,4 +15,8 @@ export default class ProductService {
 
     return product.dataValues;
   }
+
+  async getAllProducts() {
+    return await Product.findAll();
+  }
 }

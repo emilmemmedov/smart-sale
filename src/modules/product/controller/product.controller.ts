@@ -1,4 +1,11 @@
-import { Body, Controller, JsonController, Post } from 'routing-controllers';
+import {
+  Body,
+  Controller,
+  Get,
+  JsonController,
+  Post,
+  Put,
+} from 'routing-controllers';
 import { CreateProductRequestDto } from '../dto/create-product-request.dto';
 import { HttpResponse } from '../../../common/types/http.response';
 import ProductService from '../service/product.service';
@@ -15,5 +22,10 @@ export default class ProductController {
     const product = await this.productService.createProduct(data);
 
     return HttpResponse.build(product);
+  }
+
+  @Get()
+  async getAllProducts() {
+    return await this.productService.getAllProducts();
   }
 }
