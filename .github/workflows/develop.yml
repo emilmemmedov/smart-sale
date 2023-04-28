@@ -1,0 +1,58 @@
+name: CI
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Cache node modules
+        id: cache-npm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - run: mkdir deployable
+      - run: rsync -r --exclude 'deployable' . ./deployable
+
+      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        name: List the state of node modules
+        continue-on-error: true
+        run: npm list
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+#      - name: Deploy to Prod server
+#        uses: appleboy/scp-action@master
+#        with:
+#          host: ${{ secrets.DEV_SERVER_HOST }}
+#          username: ${{ secrets.DEV_SERVER_USER }}
+#          password: ${{ secrets.DEV_SERVER_PASSWORD }}
+#          port: 22
+#          source: "./deployable/"
+#          target: ${{ secrets.DEV_SERVER_PROJECT_DIR }}/smart-sale/backend.smart-sale.com/
+#
+#      - name: RUN script on Prod server
+#        uses: appleboy/ssh-action@master
+#        with:
+#          host: ${{ secrets.DEV_SERVER_HOST }}
+#          username: ${{ secrets.DEV_SERVER_USER }}
+#          password: ${{ secrets.DEV_SERVER_PASSWORD }}
+#          port: 22
+#          script: sh ${{ secrets.DEV_SERVER_PROJECT_DIR }}/smart-sale/backend.smart-sale.com/resources/deploy.sh
