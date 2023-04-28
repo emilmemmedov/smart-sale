@@ -27,13 +27,17 @@ export default class OrderService {
     });
 
     await order.save();
+    let response = [];
 
     products.forEach((product) => {
+      response.push(product.dataValues);
       const orderProduct = OrderProduct.build({
         orderId: order.id,
         productId: product.id,
       });
       orderProduct.save();
     });
+
+    return response;
   }
 }

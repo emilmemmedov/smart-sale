@@ -15,6 +15,7 @@ export const errorHandler = async (
       status,
       stack: '',
     };
+    res.status(status);
     await res.send(body);
   }
   next();

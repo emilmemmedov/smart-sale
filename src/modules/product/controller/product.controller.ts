@@ -12,8 +12,8 @@ export default class ProductController {
   }
   @Post()
   async createProduct(@Body() data: CreateProductRequestDto) {
-    await this.productService.createProduct(data);
+    const product = await this.productService.createProduct(data);
 
-    return HttpResponse.build({ data });
+    return HttpResponse.build(product);
   }
 }

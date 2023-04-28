@@ -12,5 +12,7 @@ export default class ProductService {
     });
 
     await product.save();
+
+    return product.dataValues;
   }
 }
